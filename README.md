@@ -17,6 +17,6 @@ python draw_rectangle.py | stdg
 
 This will open the following window to output the graphics.
 
-![An example output through standard graphics](https://i.imgur.com/SMYhphg.png)
+![An example output through standard graphics](https://i.imgur.com/bPnUYoJ.png)
 
 This projects is currently best described as a prototype but there is active progress being made towards supporting more 2D primitives as well as full-blown support for event handling.
