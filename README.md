@@ -51,8 +51,8 @@ while True:
 
 	# draw the wheels
 	print("color 77 66 66")
-	print("fill circle " + str(x + 25) + " 221 12");
-	print("fill circle " + str(x + 75) + " 221 12");
+	print("fill circle " + str(x + 25) + " 221 12")
+	print("fill circle " + str(x + 75) + " 221 12")
 
 	print("present")
 	print("handle")
