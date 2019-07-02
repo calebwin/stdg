@@ -287,6 +287,30 @@ impl<'a> Executor for Engine<'a> {
 			            Event::Quit {..} | Event::KeyDown {keycode: Some(Keycode::Escape), ..} => {
 			                process::exit(1);
 			            }
+                        Event::KeyDown {keycode: Some(key_code), ..} => {
+                            println!("key down");
+                            println!("{:?}", key_code);
+                        }
+                        Event::KeyUp {keycode: Some(key_code), ..} => {
+                            println!("key up");
+                            println!("{:?}", key_code);
+                        }
+                        Event::MouseMotion {x, y, ..} => {
+                            println!("mouse motion");
+                            println!("{:?}", x);
+                            println!("{:?}", y);
+                        }
+                        Event::FingerDown {..} => {
+                            println!("finger down");
+                        }
+                        Event::FingerUp {..} => {
+                            println!("finger up");
+                        }
+                        Event::FingerMotion {x, y, ..} => {
+                            println!("finger motion");
+                            println!("{:?}", x);
+                            println!("{:?}", y);
+                        }
 			            _ => {}
 			        }
 				}
