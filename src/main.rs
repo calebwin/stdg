@@ -163,46 +163,46 @@ impl<'a> Executor for Engine<'a> {
                     // get parameters for rendering square
                     let center_x = instruction.params[0].parse::<i32>().unwrap();
                     let center_y = instruction.params[1].parse::<i32>().unwrap();
-                    let r = instruction.params[2].parse::<i32>().unwrap();
+                    let radius = instruction.params[2].parse::<i32>().unwrap();
 
-                    for radius in 0..r {
-                        let diameter = radius * 2;
+                    let mut points = vec![];
 
-                        let mut x = radius - 1;
-                        let mut y = 0;
-                        let mut tx = 1;
-                        let mut ty = 1;
-                        let mut error = tx - diameter;
+                    let diameter = radius * 2;
 
-                        while x >= y {
-                            // create points
-                            let mut points = vec![
-                                Point::new(center_x + x, center_y - y),
-                                Point::new(center_x + x, center_y + y),
-                                Point::new(center_x - x, center_y - y),
-                                Point::new(center_x - x, center_y + y),
-                                Point::new(center_x + y, center_y - x),
-                                Point::new(center_x + y, center_y + x),
-                                Point::new(center_x - y, center_y - x),
-                                Point::new(center_x - y, center_y + x),
-                            ];
+                    let mut x = radius - 1;
+                    let mut y = 0;
+                    let mut tx = 1;
+                    let mut ty = 1;
+                    let mut error = tx - diameter;
 
-                            // render points
-                            for point in points {
-                                let _ = self.ren.draw_point(point);
-                            }
+                    while x >= y {
+                        // create points
+                        points.push(Point::new(center_x + x, center_y - y));
+                        points.push(Point::new(center_x + x, center_y + y));
+                        points.push(Point::new(center_x - x, center_y - y));
+                        points.push(Point::new(center_x - x, center_y + y));
+                        points.push(Point::new(center_x + y, center_y - x));
+                        points.push(Point::new(center_x + y, center_y + x));
+                        points.push(Point::new(center_x - y, center_y - x));
+                        points.push(Point::new(center_x - y, center_y + x));
 
-                            if error <= 0 {
-                                y += 1;
-                                error += ty;
-                                ty += 2;
-                            }
+                        if error <= 0 {
+                            y += 1;
+                            error += ty;
+                            ty += 2;
+                        }
 
-                            if error > 0 {
-                                x -= 1;
-                                tx += 2;
-                                error += tx - diameter;
-                            }
+                        if error > 0 {
+                            x -= 1;
+                            tx += 2;
+                            error += tx - diameter;
+                        }
+                    }
+
+                    // render points
+                    for point_a in points.clone() {
+                        for point_b in points.clone() {
+                            let _ = self.ren.draw_line(point_a.clone(), point_b.clone());
                         }
                     }
                 }

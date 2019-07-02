@@ -11,7 +11,7 @@ while True:
 	print("color 255 255 255")
 	print("clear")
 	print("color 255 0 0")
-	print("fill circle 150 150 20")
+	print("fill circle 150 150 80")
 	print("point 0 300")
 	print("point 1 300")
 	print("point 2 300")
