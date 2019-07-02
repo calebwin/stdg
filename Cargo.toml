@@ -6,3 +6,7 @@ edition = "2018"
 
 [dependencies]
 sdl2 = "0.29"
+# cairo-rs = "0.6.0"
+# piston_window = "0.99.0"
+# piston2d-gfx_graphics = "0.61.0"
+# simple = "0.3.0"
