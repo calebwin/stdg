@@ -1,38 +1,18 @@
-// extern crate sdl2;
-
+// use standard library
 use std::env;
-
 use std::str::FromStr;
-
 use std::io;
 use std::io::BufRead;
 
+// use sdl2
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::rect::Rect;
 use sdl2::rect::Point;
 use std::process;
-
 use sdl2::render::Renderer;
 use sdl2::video::Window;
 use sdl2::Sdl;
-
-// extern crate cairo;
-
-// extern crate piston_window;
-
-// use piston_window::*;
-// use piston_window::rectangle::*;
-
-// use std::sync::mpsc::{Sender, Receiver};
-// use std::sync::mpsc;
-// use std::thread;
-
-// extern crate cairo;
-
-// use std::env;
-// use std::fs::File;
-// use cairo::{Context, Format, ImageSurface};
 
 /// Executes instructions to draw
 trait Executor {
@@ -64,37 +44,41 @@ impl<'a> Executor for Engine<'a> {
 			InstructionType::Color => {
 				if instruction.params.len() == 3 {
 					// get parameters for setting color
-					let r = instruction.params[0].parse::<u8>().unwrap();
-					let g = instruction.params[1].parse::<u8>().unwrap();
-					let b = instruction.params[2].parse::<u8>().unwrap();
+					let r = instruction.params[0].parse::<u8>().expect("expected unsigned 8-bit integer as value of red in color");
+					let g = instruction.params[1].parse::<u8>().expect("expected unsigned 8-bit integer as value of green in color");
+					let b = instruction.params[2].parse::<u8>().expect("expected unsigned 8-bit integer as value of blue in color");
 
 					// create color
 					let mut color = sdl2::pixels::Color::RGB(r, g, b);
 
 					// set color
 					let _ = self.ren.set_draw_color(color);
-				}
+				} else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
+                }
 			}
             InstructionType::FillSquare => {
                 if instruction.params.len() == 4 {
                     // get parameters for rendering square
-                    let x = instruction.params[0].parse::<i32>().unwrap();
-                    let y = instruction.params[1].parse::<i32>().unwrap();
-                    let size = instruction.params[2].parse::<u32>().unwrap();
+                    let x = instruction.params[0].parse::<i32>().expect("expected 32-bit integer as value of x position of square");
+                    let y = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of square");
+                    let size = instruction.params[2].parse::<u32>().expect("expected unsigned 32-bit integer as value size of square");
 
                     // create square
                     let mut rect = Rect::new(x, y, size, size);
 
                     // render square
                     let _ = self.ren.fill_rect(rect);
+                } else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
                 }
             }
             InstructionType::OutlineSquare => {
                 if instruction.params.len() == 4 {
                     // get parameters for rendering square
-                    let x = instruction.params[0].parse::<i32>().unwrap();
-                    let y = instruction.params[1].parse::<i32>().unwrap();
-                    let size = instruction.params[2].parse::<i32>().unwrap();
+                    let x = instruction.params[0].parse::<i32>().expect("expected 32-bit integer as value of x position of square");
+                    let y = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of square");
+                    let size = instruction.params[2].parse::<i32>().expect("expected 32-bit integer as value of size of square");
 
                     // create points
                     let mut top_left = Point::new(x, y);
@@ -107,30 +91,34 @@ impl<'a> Executor for Engine<'a> {
                     let _ = self.ren.draw_line(top_right, bottom_right);
                     let _ = self.ren.draw_line(bottom_right, bottom_left);
                     let _ = self.ren.draw_line(bottom_left, top_left);
+                } else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
                 }
             }
 			InstructionType::FillRect => {
 				if instruction.params.len() == 4 {
 					// get parameters for rendering square
-					let x = instruction.params[0].parse::<i32>().unwrap();
-					let y = instruction.params[1].parse::<i32>().unwrap();
-					let w = instruction.params[2].parse::<u32>().unwrap();
-					let h = instruction.params[3].parse::<u32>().unwrap();
+					let x = instruction.params[0].parse::<i32>().expect("expected 32-bit integer as value of x position of rectangle");
+					let y = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of rectangle");
+					let w = instruction.params[2].parse::<u32>().expect("expected unsigned 32-bit integer as value of width of rectangle");
+					let h = instruction.params[3].parse::<u32>().expect("expected unsigned 32-bit integer as value of height of rectangle");
 
 					// create square
 					let mut rect = Rect::new(x, y, w, h);
 
 					// render square
 					let _ = self.ren.fill_rect(rect);
-				}
+				} else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
+                }
 			}
             InstructionType::OutlineRect => {
                 if instruction.params.len() == 4 {
                     // get parameters for rendering square
-                    let x = instruction.params[0].parse::<i32>().unwrap();
-                    let y = instruction.params[1].parse::<i32>().unwrap();
-                    let w = instruction.params[2].parse::<i32>().unwrap();
-                    let h = instruction.params[3].parse::<i32>().unwrap();
+                    let x = instruction.params[0].parse::<i32>().expect("expected 32-bit integer as value of x position of rectangle");
+                    let y = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of rectangle");
+                    let w = instruction.params[2].parse::<i32>().expect("expected 32-bit integer as value of width of rectangle");
+                    let h = instruction.params[3].parse::<i32>().expect("expected 32-bit integer as value of height of rectangle");
 
                     // create points
                     let mut top_left = Point::new(x, y);
@@ -143,15 +131,17 @@ impl<'a> Executor for Engine<'a> {
                     let _ = self.ren.draw_line(top_right, bottom_right);
                     let _ = self.ren.draw_line(bottom_right, bottom_left);
                     let _ = self.ren.draw_line(bottom_left, top_left);
+                } else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
                 }
             }
             InstructionType::Line => {
                 if instruction.params.len() == 4 {
                     // get parameters for rendering square
-                    let x_1 = instruction.params[0].parse::<i32>().unwrap();
-                    let y_1 = instruction.params[1].parse::<i32>().unwrap();
-                    let x_2 = instruction.params[2].parse::<i32>().unwrap();
-                    let y_2 = instruction.params[3].parse::<i32>().unwrap();
+                    let x_1 = instruction.params[0].parse::<i32>().expect("expected 32-bit integer as value of x position of start of line");
+                    let y_1 = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of start of line");
+                    let x_2 = instruction.params[2].parse::<i32>().expect("expected 32-bit integer as value of x position of end of line");
+                    let y_2 = instruction.params[3].parse::<i32>().expect("expected 32-bit integer as value of y position of end of line");
 
                     // create points
                     let mut start = Point::new(x_1, y_1);
@@ -159,14 +149,16 @@ impl<'a> Executor for Engine<'a> {
 
                     // render line
                     let _ = self.ren.draw_line(start, end);
+                } else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
                 }
             }
             InstructionType::FillCircle => {
                 if instruction.params.len() == 3 {
                     // get parameters for rendering square
-                    let center_x = instruction.params[0].parse::<i32>().unwrap();
-                    let center_y = instruction.params[1].parse::<i32>().unwrap();
-                    let radius = instruction.params[2].parse::<i32>().unwrap();
+                    let center_x = instruction.params[0].parse::<i32>().expect("expected 32-bit integer as value of x position of center of circle");
+                    let center_y = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of center of circle");
+                    let radius = instruction.params[2].parse::<i32>().expect("expected 32-bit integer as value of radius of circle");
 
                     let mut points = vec![];
 
@@ -208,14 +200,16 @@ impl<'a> Executor for Engine<'a> {
                             let _ = self.ren.draw_line(point_a.clone(), point_b.clone());
                         }
                     }
+                } else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
                 }
             }
             InstructionType::OutlineCircle => {
                 if instruction.params.len() == 3 {
                     // get parameters for rendering square
-                    let center_x = instruction.params[0].parse::<i32>().unwrap();
-                    let center_y = instruction.params[1].parse::<i32>().unwrap();
-                    let radius = instruction.params[2].parse::<i32>().unwrap();
+                    let center_x = instruction.params[0].parse::<i32>().expect("expected 32-bit integer as value of x position of center of circle");
+                    let center_y = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of center of circle");
+                    let radius = instruction.params[2].parse::<i32>().expect("expected 32-bit integer as value of radius of circle");
 
                     let diameter = radius * 2;
 
@@ -255,19 +249,23 @@ impl<'a> Executor for Engine<'a> {
                             error += tx - diameter;
                         }
                     }
+                } else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
                 }
             }
             InstructionType::Point => {
                 if instruction.params.len() == 2 {
                     // get parameters for rendering square
-                    let x = instruction.params[0].parse::<i32>().unwrap();
-                    let y = instruction.params[1].parse::<i32>().unwrap();
+                    let x = instruction.params[0].parse::<i32>().expect("expected 32-bit integer as value of x position of point");
+                    let y = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of point");
 
                     // create point
                     let mut rect = Point::new(x, y);
 
                     // render point
                     let _ = self.ren.draw_point(rect);
+                } else {
+                    panic!("incorrect number of tokens found on line that begins as a command to stdg");
                 }
             }
 
@@ -405,8 +403,8 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() == 4 {
         name = &args[1];
-        w = args[2].parse::<u32>().unwrap();
-        h = args[3].parse::<u32>().unwrap();
+        w = args[2].parse::<u32>().expect("expected 32-bit integer as value of width of window");
+        h = args[3].parse::<u32>().expect("expected 32-bit integer as value of height of window");
     }
 
     // create new window for context
@@ -436,172 +434,3 @@ fn main() {
 }
 
 // TODO print errors
-
-
-// fn main() {
-// // // 	// // channel for sending instructions
-// // // 	// let (tx, rx): (Sender<String>, Receiver<String>) = mpsc::channel();
-
-// // // 	// // thread for reading instructions
-// // // 	// let reader = thread::spawn(move || {
-// // // 	// 	// loop through input from stdin
-// // // 	//     for raw_line in io::stdin().lock().lines() {
-// // // 	//     	// parse line for instructions
-// // // 	//     	let line = raw_line.unwrap();
-// // // 	//     	let mut tokens = line.split_whitespace();
-
-// // // 	//     	// send instructions to printer
-// // // 	//     	tx.clone().send(tokens.next().unwrap().to_string()).unwrap();
-// // // 	//     }
-// // // 	// });
-
-// // // 	// // thread for printing graphics
-// // // 	// let printer = thread::spawn(move || {
-// // // 	// 	// create window with blank title and default dimensions
-// // // 	// 	let mut window: PistonWindow = WindowSettings::new("", [400, 400]).build().unwrap();
-
-// // // 	// 	while let Some(event) = window.next() {
-// // // 	//     	window.draw_2d(&event, |context, graphics, _device| {
-// // //  //    		    if let Ok(instruction) = rx.recv() {
-// // // 	// 				print!("{}", instruction);
-// // // 	// 		    }
-
-// // // 	//     		clear([1.0; 4], graphics);
-// // // 	//             rectangle([1.0, 0.0, 0.0, 1.0], // red
-// // // 	//                       [0.0, 0.0, 100.0, 100.0],
-// // // 	//                       context.transform,
-// // // 	//                       graphics);
-// // // 	//     	});
-// // // 	//     }
-// // // 	// });
-
-// // // 	// reader.join();
-// // // 	// printer.join();
-
-// // 	// create window
-// // 	let mut window: PistonWindow = WindowSettings::new("", [400, 400]).build().unwrap();
-
-// // 	// loop through input from stdin
-// //     for raw_line in io::stdin().lock().lines() {
-// //     	// parse line
-// //     	let line = raw_line.unwrap();
-// //     	let mut tokens = line.split_whitespace();
-
-// //     	// keep track of state
-// //     	let mut color: [f32; 4] = [0.0, 0.0, 0.0, 1.0];
-
-// //     	// handle instruction
-// //         match tokens.next().unwrap() {
-// //         	"color" => {
-// //         		let r: f32 = tokens.next().expect("expected amount of red in color").parse().expect("expected a floating point number");
-// //         		let g: f32 = tokens.next().expect("expected amount of green in color").parse().expect("expected a floating point number");
-// //         		let b: f32 = tokens.next().expect("expected amount of blue in color").parse().expect("expected a floating point number");
-// //         		let t: f32 = tokens.next().expect("expected amount of transparency").parse().expect("expected a floating point number");
-
-// //         		color = [r / 255f32, g / 255f32, b / 255f32, t / 255f32];
-// //         	}
-// //         	"clear" => {
-// // 				if let Some(event) = window.next() {
-// // 			        window.draw_2d(&event, |context, graphics, _device| {
-// // 			        	clear([0.0, 0.0, 0.0, 1.0], graphics);
-// // 			        });
-// // 			    }
-// //         	}
-// //         	"rect" => {
-// //         		let x: f64 = tokens.next().expect("expected x position of rectangle").parse().expect("expected a floating point number");
-// //         		let y: f64 = tokens.next().expect("expected y position of rectangle").parse().expect("expected a floating point number");
-// //         		let w: f64 = tokens.next().expect("expected width of rectangle").parse().expect("expected a floating point number");
-// //         		let h: f64 = tokens.next().expect("expected height of rectangle").parse().expect("expected a floating point number");
-
-// //        //  		println!("5");
-
-// //        //  		while let fn(piston_window::Loop) -> piston_window::Event {piston_window::Event::Loop} = Event::Loop {
-// // 			    //     window.draw_2d(&event, |context, graphics, _device| {
-// // 			    //         rectangle(color,
-// // 			    //                   [x, y, w, h],
-// // 			    //                   context.transform,
-// // 			    //                   graphics);
-// // 			    //     });
-// // 			    // }
-
-// // 			    let rectangle = Rectangle::new(color::BLACK);
-// // 				let dims = square(0.0, 0.0, 10.0);
-// // 				rectangle.draw(dims, &draw_state::DrawState::new_alpha(), transform, gfx_graphics::GfxGraphics::);
-// //         	}
-// //         	_ => {
-// //         		println!("bye!");
-// //         	}
-// //         }
-// //     }
-
-// 	// create window
-// 	let mut window: PistonWindow = WindowSettings::new("", [400, 400]).build().unwrap();
-
-
-// 	// keep track of some stuff
-// 	let mut color: [f32; 4] = [0.0, 0.0, 0.0, 1.0];
-
-// 	// loop
-// 	while let Some(e) = window.next() {
-
-// 		// parse a line of input
-//     	let mut line = String::new();
-//     	std::io::stdin().read_line(&mut line).unwrap();
-//     	let mut tokens = line.split_whitespace();
-
-//     	match tokens.next().unwrap().as_ref() {
-//     		"color" => {
-//         		let r: f32 = tokens.next().expect("expected amount of red in color").parse().expect("expected a floating point number");
-//         		let g: f32 = tokens.next().expect("expected amount of green in color").parse().expect("expected a floating point number");
-//         		let b: f32 = tokens.next().expect("expected amount of blue in color").parse().expect("expected a floating point number");
-//         		let t: f32 = tokens.next().expect("expected amount of transparency").parse().expect("expected a floating point number");
-
-//         		color = [r / 255f32, g / 255f32, b / 255f32, t / 255f32];
-//         	}
-//         	"clear" => {
-//         		window.draw_2d(&e, |c, g, _| {
-//         			clear(color, g);
-//         		});
-//         	}
-//     		"rect" => {
-// 				let x: f64 = tokens.next().expect("expected x position of rectangle").parse().expect("expected a floating point number");
-//     			let y: f64 = tokens.next().expect("expected y position of rectangle").parse().expect("expected a floating point number");
-//     			let w: f64 = tokens.next().expect("expected width of rectangle").parse().expect("expected a floating point number");
-//     			let h: f64 = tokens.next().expect("expected height of rectangle").parse().expect("expected a floating point number");
-
-// 				window.draw_2d(&e, |c, g, _| {
-//         			rectangle([1.0, 0.0, 0.0, 1.0], [x, y, w, h], c.transform, g);
-// 				});
-//     		}
-//     		"present" => {
-//     			// TODO present
-//     		}
-//     		_ => {}
-//     	}
-//     }
-// }
-
-
-// fn main() {
-// 	let mut app = simple::Window::new("hello world", 1920, 1080);
-
-// 	app.set_color(255, 0, 255, 255);
-// 	app.draw_rect(simple::Rect::new(
-// 	    100,
-// 	    110,
-// 	    120,
-// 	    130,
-// 	));
-
-// 	while app.next_frame() {}
-// }
-
-// pm/executive
-// - change supported platforms without changing development environment
-// - change development environment without changing supported platforms
-// - less coding
-// - only 1 tool for employees to learn for all projects
-
-// programmer
-// - print text
-// - print graphics
