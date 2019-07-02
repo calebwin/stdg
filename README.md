@@ -19,4 +19,30 @@ This will open the following window to output the graphics.
 
 ![An example output through standard graphics](https://i.imgur.com/bPnUYoJ.png)
 
-This projects is currently best described as a prototype but there is active progress being made towards supporting more 2D primitives as well as full-blown support for event handling.
+Here's another example. This example is taken from Khan Academy's "Making animations" lesson.
+
+```python
+# position of the car
+x = 10
+
+while True:
+	print("color 151 244 247")
+	print("clear")
+
+	# draw the car body
+	print("color 255 0 115")
+	print("fill rect " + str(x) + " 200 100 20")
+	print("fill rect " + str(x + 15) + " 178 70 40")
+
+	# draw the wheels
+	print("color 77 66 66")
+	print("fill circle " + str(x + 25) + " 221 12");
+	print("fill circle " + str(x + 75) + " 221 12");
+
+	print("present")
+	print("handle")
+
+	x = x + 1
+```
+
+![An example output through standard graphics](https://i.imgur.com/aRbhapW.png)
