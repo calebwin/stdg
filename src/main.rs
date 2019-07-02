@@ -1,5 +1,7 @@
 // extern crate sdl2;
 
+use std::env;
+
 use std::str::FromStr;
 
 use std::io;
@@ -12,6 +14,7 @@ use sdl2::rect::Point;
 use std::process;
 
 use sdl2::render::Renderer;
+use sdl2::video::Window;
 use sdl2::Sdl;
 
 // extern crate cairo;
@@ -322,6 +325,8 @@ struct Instruction {
 /// Types of instructions that can be executed
 enum InstructionType {
 	Nothing,
+    Resize,
+    Title,
 	Color,
     FillSquare,
 	FillRect,
@@ -349,6 +354,8 @@ impl Instruction {
 		// get instruction type
 		if tokens.len() >= 1 {
 			ty = match tokens[0].as_ref() {
+                "resize" => InstructionType::Resize,
+                "title" => InstructionType::Title,
 				"color" => InstructionType::Color,
                 "fill" => match tokens[1].as_ref() {
                     "rect" => InstructionType::FillRect,
@@ -390,10 +397,22 @@ fn main() {
     let ctx = sdl2::init().unwrap();
     let video_ctx = ctx.video().unwrap();
 
+    // get metadata
+    let mut name = "Untitled";
+    let mut w = 400;
+    let mut h = 400;
+
+    let args: Vec<String> = env::args().collect();
+    if args.len() == 4 {
+        name = &args[1];
+        w = args[2].parse::<u32>().unwrap();
+        h = args[3].parse::<u32>().unwrap();
+    }
+
     // create new window for context
     // initalize window with default title and dimensions
     let window = match video_ctx
-        .window("Untitled", 400, 400)
+        .window(name, w, h)
         .position_centered()
         .opengl()
         .build()
