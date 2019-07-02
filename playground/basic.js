@@ -3,7 +3,7 @@
 // 	cargo build
 // 	node playground/basic.js | target/debug/stdg[.exe]
 
-while true {
+while (true) {
 	console.log("color 255 255 255");
 	console.log("clear");
 	console.log("color 255 0 0");
