@@ -35,7 +35,7 @@ This will open the following window to output the graphics.
 
 ![An example output through standard graphics](https://i.imgur.com/bPnUYoJ.png)
 
-Here's another example. This example is taken from Khan Academy's "Making animations" lesson.
+Here's another example. This example is taken from Khan Academy's "Making animations" lesson.  Since this program is written in Python, you will have to use the Python interpreter to run it.
 
 ```python
 # position of the car
@@ -60,9 +60,6 @@ while True:
 
 	x = x + 1
 ```
-
-Since this program is written in Python, you will have to use the Python interpreter to run it.
-
 ```cmd
 python moving_car.py | stdg
 ```
