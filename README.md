@@ -17,8 +17,6 @@ This allows Standard Graphics to be used to create simple data visualizations, v
 Here is an example of `stdg` being used by a Ruby program-
 ```ruby
 loop do
-	puts 'foo'  
-	puts 'bar'
 	puts 'color 255 255 255'
 	puts 'clear'
 	puts 'color 255 0 0'
