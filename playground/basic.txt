@@ -1,0 +1,10 @@
+window 400 400
+title A Rectangle
+
+color 255 255 255
+clear
+color 255 0 0
+fill rect 50 50 50 50
+
+present
+handle forever

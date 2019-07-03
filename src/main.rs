@@ -275,42 +275,56 @@ impl<'a> Executor for Engine<'a> {
 				let _ = self.ren.present();
 			}
 			InstructionType::Handle => {
-				// get pending events
-				let mut events = self.ctx.event_pump().unwrap();
+                // get pending events
+                let mut events = self.ctx.event_pump().unwrap();
 
-				// handle all pending events
-				for event in events.poll_iter() {
-			        match event {
-			            Event::Quit {..} | Event::KeyDown {keycode: Some(Keycode::Escape), ..} => {
-			                process::exit(1);
-			            }
-                        Event::KeyDown {keycode: Some(key_code), ..} => {
-                            println!("key down");
-                            println!("{:?}", key_code);
+                if instruction.params.len() == 1 && instruction.params[0] == "forever" {
+                    // handle all pending events forever
+                    loop {
+                        for event in events.poll_iter() {
+                            match event {
+                                Event::Quit {..} | Event::KeyDown {keycode: Some(Keycode::Escape), ..} => {
+                                    process::exit(1);
+                                }
+                                _ => {}
+                            }
                         }
-                        Event::KeyUp {keycode: Some(key_code), ..} => {
-                            println!("key up");
-                            println!("{:?}", key_code);
+                    }
+                } else {
+                    // handle all pending events
+                    for event in events.poll_iter() {
+                        match event {
+                            Event::Quit {..} | Event::KeyDown {keycode: Some(Keycode::Escape), ..} => {
+                                process::exit(1);
+                            }
+                            Event::KeyDown {keycode: Some(key_code), ..} => {
+                                println!("key down");
+                                println!("{:?}", key_code);
+                            }
+                            Event::KeyUp {keycode: Some(key_code), ..} => {
+                                println!("key up");
+                                println!("{:?}", key_code);
+                            }
+                            Event::MouseMotion {x, y, ..} => {
+                                println!("mouse motion");
+                                println!("{:?}", x);
+                                println!("{:?}", y);
+                            }
+                            Event::FingerDown {..} => {
+                                println!("finger down");
+                            }
+                            Event::FingerUp {..} => {
+                                println!("finger up");
+                            }
+                            Event::FingerMotion {x, y, ..} => {
+                                println!("finger motion");
+                                println!("{:?}", x);
+                                println!("{:?}", y);
+                            }
+                            _ => {}
                         }
-                        Event::MouseMotion {x, y, ..} => {
-                            println!("mouse motion");
-                            println!("{:?}", x);
-                            println!("{:?}", y);
-                        }
-                        Event::FingerDown {..} => {
-                            println!("finger down");
-                        }
-                        Event::FingerUp {..} => {
-                            println!("finger up");
-                        }
-                        Event::FingerMotion {x, y, ..} => {
-                            println!("finger motion");
-                            println!("{:?}", x);
-                            println!("{:?}", y);
-                        }
-			            _ => {}
-			        }
-				}
+                    }
+                }
 			}
 			_ => {}
 		}
@@ -376,18 +390,18 @@ impl Instruction {
                 "resize" => InstructionType::Resize,
                 "title" => InstructionType::Title,
 				"color" => InstructionType::Color,
-                "fill" => match tokens[1].as_ref() {
+                "fill" => if tokens.len() >= 2 { match tokens[1].as_ref() {
                     "rect" => InstructionType::FillRect,
                     "square" => InstructionType::FillSquare,
                     "circle" => InstructionType::FillCircle,
                     _ => InstructionType::Nothing,
-                },
-                "outline" => match tokens[1].as_ref() {
+                } } else { InstructionType::Nothing },
+                "outline" => if tokens.len() >= 2 { match tokens[1].as_ref() {
                     "rect" => InstructionType::OutlineRect,
                     "square" => InstructionType::OutlineSquare,
                     "circle" => InstructionType::OutlineCircle,
                     _ => InstructionType::Nothing,
-                },
+                } } else { InstructionType::Nothing },
                 "point" => InstructionType::Point,
                 "line" => InstructionType::Line,
 				"clear" => InstructionType::Clear,
