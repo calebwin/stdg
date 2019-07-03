@@ -14,15 +14,18 @@ This allows Standard Graphics to be used to create simple data visualizations, v
 
 # Examples
 
-Here is an example of `stdg` being used by a Python program-
-```python
-while True:
-	print("color 255 255 255")
-	print("clear")
-	print("color 255 0 0")
-	print("rect 50 50 100 100")
-	print("present")
-	print("handle")
+Here is an example of `stdg` being used by a Ruby program-
+```ruby
+loop do
+	puts 'foo'  
+	puts 'bar'
+	puts 'color 255 255 255'
+	puts 'clear'
+	puts 'color 255 0 0'
+	puts 'rect 50 50 100 100'
+	puts 'present'
+	puts 'handle'
+end
 ```
 
 The graphics for this program can be rendered by piping the program's standard output to standard graphics.
