@@ -30,7 +30,7 @@ end
 
 The graphics for this program can be rendered by piping the program's standard output to standard graphics.
 ```cmd
-python draw_rectangle.py | stdg
+ruby draw_rectangle.rb | stdg
 ```
 
 This will open the following window to output the graphics.
@@ -61,6 +61,12 @@ while True:
 	print("handle")
 
 	x = x + 1
+```
+
+Since this program is written in Python, you will have to use the Python interpreter to run it.
+
+```cmd
+python moving_car.py | stdg
 ```
 
 ![An example output through standard graphics](https://i.imgur.com/aRbhapW.png)
