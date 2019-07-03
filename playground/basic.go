@@ -8,6 +8,9 @@ package main
 import "fmt"
 
 func main() {
+	fmt.Println("window 400 400")
+	fmt.Println("title A Rectangle")
+
 	for {
 		fmt.Println("color 255 255 255")
 		fmt.Println("clear")

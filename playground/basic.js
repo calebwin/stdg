@@ -3,6 +3,9 @@
 // 	cargo build
 // 	node playground/basic.js | target/debug/stdg[.exe]
 
+console.log("window 400 400");
+console.log("title A Rectangle");
+
 while (true) {
 	console.log("color 255 255 255");
 	console.log("clear");

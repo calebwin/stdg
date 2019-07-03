@@ -1,17 +1,14 @@
 // use standard library
-use std::env;
-use std::str::FromStr;
 use std::io;
 use std::io::BufRead;
+use std::process;
 
 // use sdl2
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::rect::Rect;
 use sdl2::rect::Point;
-use std::process;
 use sdl2::render::Renderer;
-use sdl2::video::Window;
 use sdl2::Sdl;
 
 /// Executes instructions to draw
@@ -49,7 +46,7 @@ impl<'a> Executor for Engine<'a> {
 					let b = instruction.params[2].parse::<u8>().expect("expected unsigned 8-bit integer as value of blue in color");
 
 					// create color
-					let mut color = sdl2::pixels::Color::RGB(r, g, b);
+					let color = sdl2::pixels::Color::RGB(r, g, b);
 
 					// set color
 					let _ = self.ren.set_draw_color(color);
@@ -65,7 +62,7 @@ impl<'a> Executor for Engine<'a> {
                     let size = instruction.params[2].parse::<u32>().expect("expected unsigned 32-bit integer as value size of square");
 
                     // create square
-                    let mut rect = Rect::new(x, y, size, size);
+                    let rect = Rect::new(x, y, size, size);
 
                     // render square
                     let _ = self.ren.fill_rect(rect);
@@ -81,10 +78,10 @@ impl<'a> Executor for Engine<'a> {
                     let size = instruction.params[2].parse::<i32>().expect("expected 32-bit integer as value of size of square");
 
                     // create points
-                    let mut top_left = Point::new(x, y);
-                    let mut top_right = Point::new(x + size, y);
-                    let mut bottom_left = Point::new(x, y + size);
-                    let mut bottom_right = Point::new(x + size, y + size);
+                    let top_left = Point::new(x, y);
+                    let top_right = Point::new(x + size, y);
+                    let bottom_left = Point::new(x, y + size);
+                    let bottom_right = Point::new(x + size, y + size);
 
                     // render rectangle
                     let _ = self.ren.draw_line(top_left, top_right);
@@ -104,7 +101,7 @@ impl<'a> Executor for Engine<'a> {
 					let h = instruction.params[3].parse::<u32>().expect("expected unsigned 32-bit integer as value of height of rectangle");
 
 					// create square
-					let mut rect = Rect::new(x, y, w, h);
+					let rect = Rect::new(x, y, w, h);
 
 					// render square
 					let _ = self.ren.fill_rect(rect);
@@ -121,10 +118,10 @@ impl<'a> Executor for Engine<'a> {
                     let h = instruction.params[3].parse::<i32>().expect("expected 32-bit integer as value of height of rectangle");
 
                     // create points
-                    let mut top_left = Point::new(x, y);
-                    let mut top_right = Point::new(x + w, y);
-                    let mut bottom_left = Point::new(x, y + h);
-                    let mut bottom_right = Point::new(x + w, y + h);
+                    let top_left = Point::new(x, y);
+                    let top_right = Point::new(x + w, y);
+                    let bottom_left = Point::new(x, y + h);
+                    let bottom_right = Point::new(x + w, y + h);
 
                     // render rectangle
                     let _ = self.ren.draw_line(top_left, top_right);
@@ -144,8 +141,8 @@ impl<'a> Executor for Engine<'a> {
                     let y_2 = instruction.params[3].parse::<i32>().expect("expected 32-bit integer as value of y position of end of line");
 
                     // create points
-                    let mut start = Point::new(x_1, y_1);
-                    let mut end = Point::new(x_2, y_2);
+                    let start = Point::new(x_1, y_1);
+                    let end = Point::new(x_2, y_2);
 
                     // render line
                     let _ = self.ren.draw_line(start, end);
@@ -221,7 +218,7 @@ impl<'a> Executor for Engine<'a> {
 
                     while x >= y {
                         // create points
-                        let mut points = vec![
+                        let points = vec![
                             Point::new(center_x + x, center_y - y),
                             Point::new(center_x + x, center_y + y),
                             Point::new(center_x - x, center_y - y),
@@ -260,10 +257,10 @@ impl<'a> Executor for Engine<'a> {
                     let y = instruction.params[1].parse::<i32>().expect("expected 32-bit integer as value of y position of point");
 
                     // create point
-                    let mut rect = Point::new(x, y);
+                    let point = Point::new(x, y);
 
                     // render point
-                    let _ = self.ren.draw_point(rect);
+                    let _ = self.ren.draw_point(point);
                 } else {
                     panic!("incorrect number of tokens found on line that begins as a command to stdg");
                 }
@@ -321,7 +318,7 @@ impl<'a> Executor for Engine<'a> {
 
 	fn run(&mut self) {
 		// get reader of instructions through standard input
-		let mut instruction_reader = io::stdin();
+		let instruction_reader = io::stdin();
 
 		// keep executing instructions
 		// the only way this loop might be ended when a "handle" instruction is executed
@@ -381,11 +378,13 @@ impl Instruction {
 				"color" => InstructionType::Color,
                 "fill" => match tokens[1].as_ref() {
                     "rect" => InstructionType::FillRect,
+                    "square" => InstructionType::FillSquare,
                     "circle" => InstructionType::FillCircle,
                     _ => InstructionType::Nothing,
                 },
                 "outline" => match tokens[1].as_ref() {
                     "rect" => InstructionType::OutlineRect,
+                    "square" => InstructionType::OutlineSquare,
                     "circle" => InstructionType::OutlineCircle,
                     _ => InstructionType::Nothing,
                 },
@@ -475,7 +474,7 @@ fn main() {
     };
 
     // create renderer for rendering graphics on window
-    let mut renderer = match window.renderer().build() {
+    let renderer = match window.renderer().build() {
         Ok(renderer) => renderer,
         Err(err) => panic!("failed to create renderer: {}", err),
     };
