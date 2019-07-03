@@ -16,6 +16,9 @@ This allows Standard Graphics to be used to create simple data visualizations, v
 
 Here is an example of `stdg` being used by a Ruby program-
 ```ruby
+puts 'window 400 400'
+puts 'title Untitled'
+
 loop do
 	puts 'color 255 255 255'
 	puts 'clear'
@@ -38,6 +41,10 @@ This will open the following window to output the graphics.
 Here's another example. This example is taken from Khan Academy's "Making animations" lesson.  Since this program is written in Python, you will have to use the Python interpreter to run it.
 
 ```python
+print("window 400 400")
+print("title Untitled")
+
+
 # position of the car
 x = 10
 
