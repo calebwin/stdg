@@ -415,26 +415,57 @@ impl Instruction {
 }
 
 fn main() {
+    // get metadata
+    let mut name = String::from("Untitled");
+    let mut w = 400;
+    let mut h = 400;
+
+    let stdin = io::stdin();
+    let mut introduction_index = 0;
+    for line in stdin.lock().lines() {
+        match introduction_index {
+            0 => {
+                let tokens = line.expect("expected window command").split_whitespace().map(|token| token.to_string()).collect::<Vec<String>>();;
+
+                if tokens.len() == 3 {
+                    if &tokens[0] == "window" {
+                        w = tokens[1].parse::<u32>().expect("expected 32-bit unsigned integer");
+                        h = tokens[2].parse::<u32>().expect("expected 32-bit unsigned integer");
+                    } else {
+                        panic!("expected window command");
+                    }
+                } else {
+                    panic!("expected 2 arguments for window command");
+                }
+            }
+            1 => {
+                let mut title_command_line = line.expect("expected title command");
+
+                // TODO get title
+                if title_command_line.starts_with("title ") {
+                    name = title_command_line.split_off(6);
+                } else {
+                    panic!("expected title command");
+                }
+            }
+            _ => {}
+        }
+
+        if introduction_index >= 1 {
+            break;
+        } else {
+            introduction_index += 1;
+        }
+    }
+
     // create contexts for rendering
     let ctx = sdl2::init().unwrap();
     let video_ctx = ctx.video().unwrap();
 
-    // get metadata
-    let mut name = "Untitled";
-    let mut w = 400;
-    let mut h = 400;
-
-    let args: Vec<String> = env::args().collect();
-    if args.len() == 4 {
-        name = &args[1];
-        w = args[2].parse::<u32>().expect("expected 32-bit integer as value of width of window");
-        h = args[3].parse::<u32>().expect("expected 32-bit integer as value of height of window");
-    }
-
     // create new window for context
     // initalize window with default title and dimensions
     let window = match video_ctx
-        .window(name, w, h)
+        .window(&name, w, h)
         .position_centered()
         .opengl()
         .build()

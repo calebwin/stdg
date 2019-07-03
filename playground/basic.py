@@ -15,6 +15,8 @@
 # 	print("present")
 # 	print("handle")
 
+print("window 400 400")
+print("title a moving car")
 
 # position of the car
 x = 10
