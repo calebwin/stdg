@@ -29,12 +29,33 @@ loop do
 end
 ```
 
-The graphics for this program can be rendered by piping the program's standard output to standard graphics.
+The graphics for this program can be rendered by piping the program's output to stdg instead of stdout.
 ```cmd
 ruby draw_rectangle.rb | stdg
 ```
 
-This will open the following window to output the graphics.
+You can save the following to a text file.
+
+```txt
+window 400 400
+title Untitled
+
+color 255 255 255
+clear
+color 255 0 0
+rect 50 50 100 100
+
+present
+handle forever
+```
+
+Instead of invoking a language interpreter such as `ruby` or `python`, you can pipe the contents of the file itself to stdg.
+
+```cmd
+draw_rectangle.txt | stdg
+```
+
+Both of these will open the following window to output the graphics.
 
 ![An example output through standard graphics](https://i.imgur.com/bPnUYoJ.png)
 
