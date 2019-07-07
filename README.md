@@ -34,7 +34,7 @@ The graphics for this program can be rendered by piping the program's output to 
 ruby draw_rectangle.rb | stdg
 ```
 
-You can save the following to a text file.
+<!--You can save the following to a text file.
 
 ```txt
 window 400 400
@@ -54,8 +54,9 @@ Instead of invoking a language interpreter such as `ruby` or `python`, you can p
 ```cmd
 draw_rectangle.txt | stdg
 ```
+--->
 
-Both of these will open the following window to output the graphics.
+This will open the following window to output the graphics.
 
 ![An example output through standard graphics](https://i.imgur.com/bPnUYoJ.png)
 
