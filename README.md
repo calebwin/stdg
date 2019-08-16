@@ -109,56 +109,16 @@ $ cargo install --path .
 
 # Commands
 
-color [Red] [Green] [Blue]
-
-Sets the color
-
-
-`[fill | outline] square [x] [y] [side length]`
-
-Draws a square from the its left corner
-
-
-`[fill | outline] rect [x] [y] [width] [height]`
-
-Draws a rectangle from its top left corner
-
-
-`line [x1] [y1] [x2] [y2]`
-
-Draws a line between (x1, y1) and (x2, y2)
-
-
-`[fill | outline] circle [x] [y] [radius]`
-
-Draws a circle from its center
-
-
-`point [x] [y]`
-
-Draws a point
-
-
-`clear`
-
-clears the screen
-
-
-`present`
-
-updates the screen
-
-
-`handle`
-
-handles input and prints keypresses to stdout
-
-
-`window [width] [height]`
-
-creates a window 
-
-
-`title [title]`
-
-titles the window
+Command | Result
+--------|-------
+`color [Red] [Green] [Blue]` | Sets the color
+`[fill \| outline] square [x] [y] [side length]` | Draws a square from the its left corner
+`[fill \| outline] rect [x] [y] [width] [height]` | Draws a rectangle from its top left corner
+`line [x1] [y1] [x2] [y2]` | Draws a line between (x1, y1) and (x2, y2)
+`[fill \| outline] circle [x] [y] [radius]` | Draws a circle from its center
+`point [x] [y]` | Draws a point
+`clear` | clears the screen
+`present` | updates the screen
+`handle` | handles input and prints keypresses to stdout
+`window [width] [height]` | creates a window 
+`title [title]` | titles the window
