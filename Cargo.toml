@@ -1,0 +1,19 @@
+[package]
+name = "stdg"
+version = "0.1.0"
+authors = ["Caleb Winston <calebhwin@gmail.com>"]
+edition = "2018"
+description = "A command-line tool for cross-language, cross-platform 2D graphics"
+homepage = "https://www.github.com/calebwin/stdg"
+repository = "https://www.github.com/calebwin/stdg"
+keywords = ["stdg", "graphics", "2d", "tool", "print"]
+readme = "README.md"
+categories = ["graphics", "science", "visualization", "development-tools", "gui"]
+license = "MIT"
+
+[dependencies]
+raqote = "0.7.5"
+minifb = "0.13.0"
+euclid = "0.20.0"
+font-kit = "0.4.0"
+png = "0.15.0"

@@ -1,0 +1,4 @@
+start 400 400 A Polygon
+background 225 225 225
+poly 130 70 180 20 340 100 360 200 270 250 130 70
+present forever
