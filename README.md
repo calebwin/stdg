@@ -85,6 +85,70 @@ while True:
 
 The following is a cheat sheet/reference for using `stdg`.
 
+The following are commands for the most basic usage of `stdg`. Note that all whitespace in text like in `start` and `text` commands are converted to single spaces.
+
+| Command                   | Example                     | Note                                 |
+| ------------------------- | --------------------------- | ------------------------------------ |
+| Start everything          | `start 400 400 A rectangle` | Must be first line printed           |
+| Present stuff to be drawn | `present`                   | Must be in an infinite loop          |
+| Present forever           | `present forever`           | Useful in `.txt` files               |
+| Get position of mouse     | `get mousex`, `get mousey`  | Sends back line containing position  |
+| Get "is mouse pressed?"   | `get mouseispressed left`   | Must be `left`, `center`, or `right` |
+| Get "is key pressed?"     | `get keyispressed space`    | Valid keys listed below              |
+| Get all keys pressed      | `get keys`                  | Sends space-seperated keys           |
+
+The following are useful for styling.
+
+| Command                    | Example                    | Note                                              |
+| -------------------------- | -------------------------- | ------------------------------------------------- |
+| Set background color       | `background 220 220 220`   |                                                   |
+| Set fill color             | `fill 255 0 0 240`         | All values of red-green-blue-alpha are 0-255      |
+| Set stroke color           | `stroke 20 20 20`          | Stroke is also called outline                     |
+| Don't fill or don't stroke | `nostroke`, `nofill`       | Default color is `nofill`, `stroke 0 0 0`         |
+| Get position of mouse      | `get mousex`, `get mousey` | Sends back line containing position               |
+| Set stroke weight          | `strokeweight 5`           | Default is 1                                      |
+| Set stroke cap             | `strokecap round`          | Must be `square`, `project`, or `round` (default) |
+| Set stroke join            | `strokejoin bevel`         | Must be `miter` (default), `bevel`, or  `round`   |
+
+We can do transformations.
+
+| Command               | Example          | Note                                       |
+| --------------------- | ---------------- | ------------------------------------------ |
+| Push a transformation | `push`           | This lets us begin a new transformation    |
+| Pop top               | `pop`            | This will revert to the old transformation |
+| Translate top         | `translate 50 0` |                                            |
+| Scale top             | `scale 0.5 1.0`  |                                            |
+| Rotate top            | `rotate 180`     | Degrees are in degrees                     |
+
+There are the common 2D primitives.
+
+| Command        | Example                  | Note                          |
+| -------------- | ------------------------ | ----------------------------- |
+| Draw rectangle | `rect 50 50 300 300`     |                               |
+| Draw ellipse   | `ellipse 200 200 50 40`  | Centered at given coordinates |
+| Draw circle    | `circle 200 200 50`      |                               |
+| Draw line      | `line 300 100 100 300`   |                               |
+| Draw arc       | `arc 200 200 50 40 0 90` | Degrees are in degrees        |
+
+Last but not least, we have text and images.
+
+| Command       | Example                                   | Note                                    |
+| ------------- | ----------------------------------------- | --------------------------------------- |
+| Set text font | `textfont C:\Windows\Fonts\Arial.ttf`     | `\` might have to be `\\`               |
+| Set text size | `textsize 20`                             |                                         |
+| Draw text     | `text 30 30`                              | Must be followed by line with text      |
+| Load image    | `open character.png as char`              | Should be called only once, if possible |
+| Draw image    | `image char 30 70`, `image char 5 5 50 1` | Should be a loaded image                |
+
+And here are the keys supported by `stdg`-
+
+- All numeric characters
+- All lower-case alphabetic characters (use `leftshift` or `rightshift` to check for upper-case)
+- `up`, `down`, `left`, `right`
+- `space`, `tab`, `enter`
+- `leftshift`, `rightshift``
+- `escape`, `backspace`, `delete`
+
 # about
 
 Standard Graphics is designed to be useful for many sorts of things-
@@ -101,12 +165,9 @@ The software itself is written entirely in pure Rust with the only exception bei
 
 # getting started
 
-The easiest way to install Standard Graphics is by downloading and installing the binaries from [here](https://github.com/calebwin/stdg/releases/tag/v0.1.0).
+The easiest way to install Standard Graphics is by downloading and installing the binaries from [here](https://github.com/calebwin/stdg/releases/tag/v0.2.0).
 
-You can also install Standard Graphics by building from source.
-```console
-$ curl https://sh.rustup.rs -sSf | sh
-$ git clone https://www.github.com/calebwin/stdg
-$ cd stdg
-$ cargo install --path .
+You can also install Standard Graphics with `cargo`, if you have [installed Rust](https://www.rust-lang.org/tools/install).
+```cmd
+cargo install stdg
 ```
