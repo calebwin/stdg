@@ -6,7 +6,7 @@ You only need to learn `stdg` once. Then it will no longer matter what language 
 
 # features
 
-- **Learn once** - a simple API for 2D graphics
+- **Learn once** - a simple new API for 2D graphics
 - **Use anywhere** - cross-language and cross-platform
 - **Get fast, performant graphics** - renders at native speed
 
