@@ -133,11 +133,12 @@ There are the common 2D primitives.
 
 | Command        | Example                  | Note                          |
 | -------------- | ------------------------ | ----------------------------- |
-| Draw rectangle | `rect 50 50 300 300`     |                               |
+| Draw rectangle | `rect 50 50 300 300`     | Must be x, y coordinates, width, height                              |
 | Draw ellipse   | `ellipse 200 200 50 40`  | Centered at given coordinates |
-| Draw circle    | `circle 200 200 50`      |                               |
+| Draw circle    | `circle 200 200 50`      | All coordinates in 4th quadrant                              |
 | Draw line      | `line 300 100 100 300`   |                               |
 | Draw arc       | `arc 200 200 50 40 0 90` | Degrees are in degrees        |
+| Draw polygon   | `poly 130 70 180 20 340 100 360 200 270 250 130 70` | Arbitrary number of points allowed |
 
 Last but not least, we have text and images.
 
