@@ -1,16 +1,16 @@
 <p align="center">
 <!--   <img height="90px" src="https://i.imgur.com/7650OtP.png"/> -->
 <!--   <img height="90px" src="https://i.imgur.com/tpdsIFX.png"/> -->
-  <img height="90px" src="https://i.imgur.com/wxTHOMd.png"/> 
+  <img height="45px" src="https://i.imgur.com/wxTHOMd.png"/> 
   <br>
-  <img height="180px" src="https://i.imgur.com/VuokGxr.png"/>
+  <img height="90px" src="https://i.imgur.com/VuokGxr.png"/>
 <!--   <br> -->
 <!--   <img height="45px" src="https://i.imgur.com/DpjP4aH.png"/> -->
   <br>
-  <img height="90px" src="https://i.imgur.com/wxTHOMd.png"/> 
+  <img height="45px" src="https://i.imgur.com/wxTHOMd.png"/> 
 </p>
 
-Standard Graphics is a command-line tool for printing 2D graphics from any language to any screen. It uses `stdin` and `stdout` to make 2D graphics as simple as printing commands with Python's `print()` or Java's `System.out.println()` for example. You can even write plain text and handle user interaction.
+Standard Graphics (abbreviated as `stdg`) is a command-line tool for printing 2D graphics from any language to any screen. It uses `stdin` and `stdout` to make 2D graphics as simple as printing commands with Python's `print()` or Java's `System.out.println()` for example. You can even write plain text and handle user interaction.
 
 You only need to learn `stdg` once. Then it will no longer matter what language or frameworks you happen to be using. You will always be able to easily print 2D graphics using the same easy-to-remember commands.
 
