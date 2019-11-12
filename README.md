@@ -6,9 +6,9 @@ You only need to learn `stdg` once. Then it will no longer matter what language 
 
 # features
 
-- **Learn once** - a simple new API for 2D graphics
-- **Use anywhere** - cross-language and cross-platform
-- **Get fast, performant graphics** - renders at native speed
+- **Learn once** - `stdg` provides a minimal set of commands for 2D graphics. These commands are designed to be intuitive, easy-to-learn, and easy-to-remember. They are mostly inspired by Khan Academy's computer programming environment and the Processing.
+- **Use anywhere** - `stdg` is both cross-language and cross-platform. This means that you can freely switch between programming languages and operating systems without having to learn a totally new 2D graphics library for the language/OS.
+- **Get fast, performant graphics** - `stdg` is an abstraction over MiniFB and Raqote which are both implemented entirely in Rust (except for MacOS which uses *some* Objective-C). Therefore, your graphics will be rendered at effectively native speed. There is no use of an Electron-like framework or "dynamic" languages in the rendering, event-handling.
 
 # example
 
@@ -80,6 +80,10 @@ while True:
   print("rect " + str(float(input()) - 25.0) + " " + str(float(input()) - 25.0) + " 50.0 50.0")
   print("present")
 ```
+
+# cheat sheet
+
+The following is a cheat sheet/reference for using `stdg`.
 
 # about
 
