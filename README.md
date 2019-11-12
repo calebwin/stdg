@@ -64,7 +64,7 @@ In this case, `stdg` doesn't accept any input. You can't pipe anything to it. Yo
 
 You give it a process by providing arguments to `stdg`. These arguments get parsed into a single command that can be executed as a process. Basically you can write `stdg python options.py` or `stdg ./menu` but you can't do `stdg python options.py && ./menu`.
 
-Then, `stdg` will run your process and read its output in exactly the same way the first usage has `stdg` reading. Commands get interpreted. Everything else gets printed as output. But now in addition to that, `stdg` will also sometimes print input to the process. This input will be information regarding things like mouse position, mouse click, etc.. 
+Then, `stdg` will run your process and read its output in exactly the same way the first usage has `stdg` reading. Commands get interpreted. Everything else gets printed as output. But now in addition to that, `stdg` will also sometimes print input to the process itself. This input will be information regarding things like mouse position, mouse click, etc.. The process can read this input one line at a time to get the mouse/key/etc. information.
 
 This second way of using `stdg` allows for interactivity. You can do things like this-
 
@@ -146,7 +146,7 @@ And here are the keys supported by `stdg`-
 - All lower-case alphabetic characters (use `leftshift` or `rightshift` to check for upper-case)
 - `up`, `down`, `left`, `right`
 - `space`, `tab`, `enter`
-- `leftshift`, `rightshift``
+- `leftshift`, `rightshift`
 - `escape`, `backspace`, `delete`
 
 # about
@@ -159,7 +159,7 @@ Standard Graphics is designed to be useful for many sorts of things-
 - Desktop games written in JavaScript
 - Simple vector graphics with plain text
 - Simple animations with C
-- and much more...
+- *and much more...*
 
 The software itself is written entirely in pure Rust with the only exception being the MacOS back-end. It uses [Raquote](https://github.com/jrmuizel/raqote) and [MiniFB](https://github.com/emoon/rust_minifb) behind the scenes for drawing stuff.
 
