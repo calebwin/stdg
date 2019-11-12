@@ -1,8 +1,14 @@
 # standard graphics
 
-Standard Graphics is a tool for printing 2D graphics from any language to any screen. It uses `stdin` and `stdout` to make 2D graphics as simple as printing commands with Python's `print()` or Java's `System.out.println()` for example. You can even write plain text and handle user interaction.
+Standard Graphics is a command-line tool for printing 2D graphics from any language to any screen. It uses `stdin` and `stdout` to make 2D graphics as simple as printing commands with Python's `print()` or Java's `System.out.println()` for example. You can even write plain text and handle user interaction.
 
 You only need to learn `stdg` once. Then it will no longer matter what language or frameworks you happen to be using. You will always be able to easily print 2D graphics using the same easy-to-remember commands.
+
+# features
+
+- **Learn once** - a simple API for 2D graphics
+- **Use anywhere** - cross-language and cross-platform
+- **Get fast, performant graphics** - renders at native speed
 
 # example
 
@@ -41,7 +47,7 @@ python moving_car.py | stdg
 
 There are 2 ways of using Standard Graphics.
 
-The first, and simplest, is by simply piping your program's output to `stdg`. All of your program's output (stuff that would normally be printed) will be sent to `stdg`.
+The first, and simplest, is by simply piping your program's output to `stdg`. All of your program's output (stuff that would normally be printed) will be sent to `stdg`. You can open a terminal and type in something like the following, provided `stdg` is installed.
 
 ```cmd
 my_data.csv | ruby my_program.rb | stdg
