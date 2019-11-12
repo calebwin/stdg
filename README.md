@@ -105,7 +105,7 @@ The following are commands for the most basic usage of `stdg`. Note that all whi
 | Get position of mouse     | `get mousex`, `get mousey`  | Sends back line containing position  |
 | Get "is mouse pressed?"   | `get mouseispressed left`   | Must be `left`, `center`, or `right` |
 | Get "is key pressed?"     | `get keyispressed space`    | Valid keys listed below              |
-| Get all keys pressed      | `get keys`                  | Sends space-seperated keys           |
+| Get all keys pressed      | `get keys`                  | Sends space-seperated valid keys           |
 
 The following are useful for styling.
 
@@ -115,7 +115,6 @@ The following are useful for styling.
 | Set fill color             | `fill 255 0 0 240`         | All values of red-green-blue-alpha are 0-255      |
 | Set stroke color           | `stroke 20 20 20`          | Stroke is also called outline                     |
 | Don't fill or don't stroke | `nostroke`, `nofill`       | Default color is `nofill`, `stroke 0 0 0`         |
-| Get position of mouse      | `get mousex`, `get mousey` | Sends back line containing position               |
 | Set stroke weight          | `strokeweight 5`           | Default is 1                                      |
 | Set stroke cap             | `strokecap round`          | Must be `square`, `project`, or `round` (default) |
 | Set stroke join            | `strokejoin bevel`         | Must be `miter` (default), `bevel`, or  `round`   |
