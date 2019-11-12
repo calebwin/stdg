@@ -123,7 +123,7 @@ fn main() {
         .collect::<Vec<String>>();
     reading.clear();
     assert_eq!(
-        window_info.get(0).expect("expected start command a").as_str(),
+        window_info.get(0).expect("expected start command").as_str(),
         "start"
     );
     let window_width = window_info
