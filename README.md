@@ -1,6 +1,7 @@
 <p align="center">
 <!--   <img height="90px" src="https://i.imgur.com/7650OtP.png"/> -->
-  <img height="90px" src="https://i.imgur.com/tpdsIFX.png"/>
+<!--   <img height="90px" src="https://i.imgur.com/tpdsIFX.png"/> -->
+  <img height="90px" src="https://i.imgur.com/xYIYLQ0.png"/>
 </p>
 
 Standard Graphics is a command-line tool for printing 2D graphics from any language to any screen. It uses `stdin` and `stdout` to make 2D graphics as simple as printing commands with Python's `print()` or Java's `System.out.println()` for example. You can even write plain text and handle user interaction.
