@@ -649,7 +649,7 @@ dependencies = [
 
 [[package]]
 name = "stdg"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "euclid 0.20.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "font-kit 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
