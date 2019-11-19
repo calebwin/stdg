@@ -22,6 +22,30 @@ You only need to learn `stdg` once. Then it will no longer matter what language 
 
 # example
 
+Standard Graphics can be used with plain text. As an example, you could save the following to a text file, `rectangle.txt`.
+
+```txt
+start 400 400 Untitled
+
+background 255 255 255
+fill 255 0 0
+rect 50 50 100 100
+
+present forever
+```
+
+If you have `stdg` and `python` correctly installed, you can open a terminal (command line/prompt), navigate to the folder containing `rectangle.txt` by using `cd`, type out the following, and press enter.
+
+```cmd
+rectangle.txt | stdg
+```
+
+This is what you should see.
+
+![An example output through standard graphics](https://i.imgur.com/bPnUYoJ.png)
+
+Standard Graphics enables you to do even more complex things. This next example is taken from Khan Academy's "Making animations" lesson. Since this program is written in Python, you will have to use the Python interpreter to run it.
+
 ```python
 print("start 400 400 Untitled")
 
@@ -47,11 +71,18 @@ while True:
 
   x = x + 1
 ```
+
+Enter the following in a terminal.
+
 ```cmd
 python moving_car.py | stdg
 ```
 
+You should see the following pop up as a window.
+
 ![An example output through standard graphics](https://i.imgur.com/aRbhapW.png)
+
+Read on the see how you can use `stdg` for not only simple graphics and animations but also interactive user interfaces.
 
 # usage
 
