@@ -208,7 +208,11 @@ The software itself is written entirely in pure Rust with the only exception bei
 
 There are two ways to install Standard Graphics.
 
-The first way is to download the binaries from [here](https://github.com/calebwin/stdg/releases/tag/v0.2.0). Once downloaded, make sure that the folder location where the binaries are stored is added to `PATH` (look that up on the Internet if you aren't sure "how to add folder location to PATH".
+The first way is to download the binaries from [here](https://github.com/calebwin/stdg/releases/tag/v0.2.0). Once downloaded, make sure that the folder location where the binaries are stored is added to `PATH` (look that up on the Internet if you aren't sure "how to add folder location to PATH". So basically what you would need to do is...
+
+1. Download binary file (`stdg.exe` or `stdg`)
+2. Move binary to desired folder (maybe `Program Files\stdg\stdg.exe` for example)
+3. Add the desired folder to `PATH`.
 
 The second way is to install Standard Graphics with `cargo`. Make sure you have [installed Rust](https://www.rust-lang.org/tools/install). Then, simply install as follows.
 ```cmd
