@@ -202,7 +202,7 @@ Standard Graphics is designed to be useful for many sorts of things-
 - Simple animations with C
 - *and much more...*
 
-The software itself is written entirely in pure Rust with the only exception being the MacOS back-end. It uses [Raquote](https://github.com/jrmuizel/raqote) and [MiniFB](https://github.com/emoon/rust_minifb) behind the scenes for drawing stuff.
+The software itself is written entirely in pure Rust with the only exception being the MacOS back-end. It uses [Raqote](https://github.com/jrmuizel/raqote) and [MiniFB](https://github.com/emoon/rust_minifb) behind the scenes for drawing stuff.
 
 # getting started
 
