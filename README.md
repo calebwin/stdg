@@ -88,7 +88,7 @@ Read on the see how you can use `stdg` for not only simple graphics and animatio
 
 Standard Graphics has been used by open-source projects.
 
-- [https://github.com/mkhan45/slang-v2/blob/master/test_files/pong_stdg.slang](Testing experimental programming languages)
+- [Testing experimental programming languages](https://github.com/mkhan45/slang-v2/blob/master/test_files/pong_stdg.slang)
 
 # Usage
 
