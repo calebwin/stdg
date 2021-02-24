@@ -14,13 +14,13 @@ Standard Graphics (abbreviated as `stdg`) is a command-line tool for printing 2D
 
 You only need to learn `stdg` once. Then it will no longer matter what language or frameworks you happen to be using. You will always be able to easily print 2D graphics using the same easy-to-remember commands.
 
-# features
+# Features
 
 - **Learn once** - `stdg` provides a minimal set of commands for 2D graphics. These commands are designed to be intuitive, easy-to-learn, and easy-to-remember. They are mostly inspired by Khan Academy's computer programming environment and Processing.
 - **Use anywhere** - `stdg` is both cross-language and cross-platform. This means that you can freely switch between programming languages and operating systems without having to learn a totally new 2D graphics library for the language/OS.
 - **Get fast, performant graphics** - `stdg` is an abstraction over MiniFB and Raqote which are both implemented entirely in Rust (except for MacOS which uses *some* Objective-C). Therefore, your graphics will be rendered at effectively native speed. There is no use of an Electron-like framework or "dynamic" languages in the rendering, event-handling.
 
-# example
+# Example
 
 Standard Graphics can be used with plain text. As an example, you could save the following to a text file, `rectangle.txt`.
 
@@ -84,7 +84,13 @@ You should see the following pop up as a window.
 
 Read on the see how you can use `stdg` for not only simple graphics and animations but also interactive user interfaces.
 
-# usage
+# Built with Standard Graphics
+
+Standard Graphics has been used by open-source projects.
+
+- [https://github.com/mkhan45/slang-v2/blob/master/test_files/pong_stdg.slang](Testing experimental programming languages)
+
+# Usage
 
 There are 2 ways of using Standard Graphics.
 
@@ -122,7 +128,7 @@ while True:
   print("present")
 ```
 
-# cheat sheet
+# Cheat Sheet
 
 The following is a cheat sheet/reference for using `stdg`.
 
@@ -190,7 +196,7 @@ And here are the keys supported by `stdg`-
 - `leftshift`, `rightshift`
 - `escape`, `backspace`, `delete`
 
-# about
+# About
 
 Standard Graphics is designed to be useful for many sorts of things-
 
@@ -204,7 +210,7 @@ Standard Graphics is designed to be useful for many sorts of things-
 
 The software itself is written entirely in pure Rust with the only exception being the MacOS back-end. It uses [Raquote](https://github.com/jrmuizel/raqote) and [MiniFB](https://github.com/emoon/rust_minifb) behind the scenes for drawing stuff.
 
-# getting started
+# Getting Started
 
 There are two ways to install Standard Graphics.
 
